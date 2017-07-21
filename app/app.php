@@ -60,7 +60,13 @@
         $name = $_POST['name'];
         $store = Store::find($id);
         $uc_name = $store->makeTitleCase($name);
-        $store->update($uc_name);
+
+        if ($store->checkDuplicate($uc_name) == "duplicate found") {
+            echo "that store name already exists!";
+        } else {
+            $store->update($uc_name);
+        }
+
         return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
     });
 
