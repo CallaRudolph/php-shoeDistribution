@@ -117,7 +117,7 @@
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
 
-            $brand2 = "Shoes";
+            $brand2 = "Shoes yo";
             $price2 = 100;
             $test_shoe2 = new Shoe($brand2, $price2);
             $test_shoe2->save();
@@ -229,12 +229,12 @@
 
         function testMakeTitleCase()
         {
-            $brand = "vans and vans";
+            $brand = "bikes and bikes";
             $price = 100;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
 
-            $title_cased = "Vans and Vans";
+            $title_cased = "Bikes and Bikes";
             $result = $test_shoe->makeTitleCase($brand);
 
             $this->assertEquals($title_cased, $result);

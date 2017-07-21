@@ -35,7 +35,7 @@
        {
            $name = "Shoess";
            $test_store = new Store($name);
-           $new_name = "Shoes Chews";
+           $new_name = "Sandwich Chews";
 
            $test_store->setName($new_name);
            $result = $test_store->getName();
@@ -82,7 +82,7 @@
 
        function testDeleteAll()
        {
-           $name = "There Shoes";
+           $name = "Their Shoes";
            $test_store = new Store($name);
            $test_store->save();
 
@@ -165,7 +165,7 @@
            $test_shoe = new Shoe($brand, $price);
            $test_shoe->save();
 
-           $brand2 = "Store";
+           $brand2 = "Shoeshops";
            $price2 = 100;
            $test_shoe2 = new Shoe($brand2, $price2);
            $test_shoe2->save();
