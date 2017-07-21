@@ -109,5 +109,15 @@
         return $app['twig']->render('shoe_edit.html.twig', array('shoe' => $shoe));
     });
 
+    $app->patch("/shoe/{id}", function($id) use ($app) {
+        $brand = $_POST['brand'];
+        $price = $_POST['price'];
+        $shoe = Shoe::find($id);
+        $uc_shoe = $shoe->makeTitleCase($brand);
+        $shoe->update($uc_shoe);
+        $shoe->updatePrice($price);
+        return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
+    });
+
     return $app;
 ?>
