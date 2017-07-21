@@ -68,5 +68,11 @@
         return $app['twig']->render('student.html.twig', array('store' => $store, 'stores' => Store::getAll(), 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
     });
 
+    //////////////////////////////////////
+
+    $app->get("/shoes", function() use ($app) {
+        return $app['twig']->render('shoes.html.twig', array('shoes' => Shoe::getAll()));
+    });
+
     return $app;
 ?>
