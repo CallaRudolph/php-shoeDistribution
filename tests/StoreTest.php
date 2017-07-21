@@ -6,6 +6,7 @@
    */
 
    require_once "src/Store.php";
+   require_once "src/Shoe.php";
 
    $server = 'mysql:host=localhost:8889;dbname=shoes_test';
    $username = 'root';
@@ -122,10 +123,61 @@
            $this->assertEquals("Shoes Abode", $test_store->getName());
        }
 
-    //    function testDelete()
-    //    {
-    //
-    //    }
+       function testDelete()
+       {
+           $brand = "Blowfish";
+           $price = 50;
+           $test_shoe = new Shoe($brand, $price);
+           $test_shoe->save();
+
+           $name = "Shoes Galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $test_store->addShoe($test_shoe);
+           $test_store->delete();
+
+           $this->assertEquals([], $test_store->getShoes());
+       }
+
+       function testAddShoe()
+       {
+
+           $brand = "Blowfish";
+           $price = 50;
+           $test_shoe = new Shoe($brand, $price);
+           $test_shoe->save();
+
+           $name = "Shoes Galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $test_store->addShoe($test_shoe);
+
+           $this->assertEquals($test_store->getShoes(), [$test_shoe]);
+       }
+
+       function testGetShoes()
+       {
+           $brand = "Blowfish";
+           $price = 50;
+           $test_shoe = new Shoe($brand, $price);
+           $test_shoe->save();
+
+           $brand2 = "Vans";
+           $price2 = 100;
+           $test_shoe2 = new Shoe($brand2, $price2);
+           $test_shoe2->save();
+
+           $name = "Shoes Galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $test_store->addShoe($test_shoe);
+           $test_store->addShoe($test_shoe2);
+
+           $this->assertEquals($test_store->getShoes(), [$test_shoe, $test_shoe2]);
+       }
    }
 
  ?>
