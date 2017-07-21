@@ -14,6 +14,11 @@
 
     class ShoeTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Shoe::deleteAll();
+        }
+
         function testGetBrand()
         {
             $brand = "Blowfish";
@@ -84,6 +89,41 @@
             $executed = $test_shoe->save();
 
             $this->assertTrue($executed, "Shoe not successfully saved to database");
+        }
+
+        function testGetAll()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $brand2 = "Vans";
+            $price2 = 100;
+            $test_shoe2 = new Shoe($brand2, $price2);
+            $test_shoe2->save();
+
+            $result = Shoe::getAll();
+
+            $this->assertEquals([$test_shoe, $test_shoe2], $result);
+        }
+
+        function testDeleteAll()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $brand2 = "Vans";
+            $price2 = 100;
+            $test_shoe2 = new Shoe($brand2, $price2);
+            $test_shoe2->save();
+
+            Shoe::deleteAll();
+
+            $result = Shoe::getAll();
+            $this->assertEquals([], $result);
         }
     }
 ?>
