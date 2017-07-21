@@ -61,5 +61,12 @@
         return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
     });
 
+    $app->post("/add_shoes", function() use ($app) {
+        $store = Store::find($_POST['store_id']);
+        $shoe = Shoe::find($_POST['shoe_id']);
+        $store->addShoe($shoe);
+        return $app['twig']->render('student.html.twig', array('store' => $store, 'stores' => Store::getAll(), 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
+    });
+
     return $app;
 ?>
