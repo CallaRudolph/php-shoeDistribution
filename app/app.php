@@ -30,8 +30,14 @@
         $name = $_POST['name'];
         $store = new Store($name);
         $uc_store = $store->makeTitleCase($name);
-        $store->setName($uc_store);
-        $store->save();
+
+        if ($store->checkDuplicate($uc_store) == "duplicate found") {
+            echo "no duplicates!";
+        } else {
+            $store->setName($uc_store);
+            $store->save();
+        }
+
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
 
@@ -83,13 +89,13 @@
         $shoe = new Shoe($brand, $price);
         $uc_shoe = $shoe->makeTitleCase($brand);
 
-        if ($shoe->checkDuplicate($uc_shoe) == "duplicates") {
+        if ($shoe->checkDuplicate($uc_shoe) == "duplicate found") {
             echo "no duplicates!";
         } else {
             $shoe->setBrand($uc_shoe);
             $shoe->save();
         }
-        
+
         return $app['twig']->render('shoes.html.twig', array('shoes' => Shoe::getAll()));
     });
 

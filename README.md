@@ -46,10 +46,8 @@ _The following user stories are available in this project:_
     * Example input: '50'
     * Example output: '$50.00'
 * The user is unable to save a blank entry for store name or shoe brand.
-* A store name and shoe brand are saved with a maximum of thirty characters.
-
-_wish list:_
 * The user cannot save a duplicate store name or duplicate shoe brand.
+* A store name and shoe brand are saved with a maximum of thirty characters.
 
 ## MySQL Commands
 The following MySQL commands were entered when creating the database and during testing:
