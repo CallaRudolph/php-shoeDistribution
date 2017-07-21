@@ -81,6 +81,8 @@
         $brand = $_POST['brand'];
         $price = $_POST['price'];
         $shoe = new Shoe($brand, $price);
+        $uc_shoe = $shoe->makeTitleCase($brand);
+        $shoe->setBrand($uc_shoe);
         $shoe->save();
         return $app['twig']->render('shoes.html.twig', array('shoes' => Shoe::getAll()));
     });
