@@ -31,5 +31,21 @@ class Shoe
     {
         $this->price = intval($new_price);
     }
+
+    function getId()
+    {
+        return $this->id;
+    }
+
+    function save()
+    {
+        $executed = $GLOBALS['DB']->exec("INSERT INTO shoes (brand, price) VALUES ('{$this->getBrand()}', {$this->getPrice()});");
+        if ($executed) {
+            $this->id = $GLOBALS['DB']->lastInsertId();
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>

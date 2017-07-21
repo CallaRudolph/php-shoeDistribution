@@ -61,5 +61,29 @@
 
             $this->assertEquals($new_price, $result);
         }
+
+        function testGetId()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $result = $test_shoe->getId();
+
+            $this->assertTrue(is_numeric($result));
+        }
+
+        function testSave()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $executed = $test_shoe->save();
+
+            $this->assertTrue($executed, "Shoe not successfully saved to database");
+        }
     }
 ?>
