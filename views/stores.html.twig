@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Shoe Depot Stores</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Shoe Depot Tracking -<h1>
+                <h6><em>For the feet, by the people</em></h6>
+                <h3>List of Stores</h3>
+            </div>
+            {% if stores is not empty %}
+                <h2>Here are all of the stores we distribute our quality products to:</h2>
+                <ul>
+                    {% for store in stores %}
+                        <li> <a href="/store/{{ store.getId }}"> {{ store.getName }}</a> </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>There are no stores yet, we've got some work to do!</p>
+            {% endif %}
+        </div>
+    </body>
+</html>
