@@ -26,5 +26,10 @@ class Shoe
     {
         return $this->price;
     }
+
+    function setPrice($new_price)
+    {
+        $this->price = intval($new_price);
+    }
 }
 ?>

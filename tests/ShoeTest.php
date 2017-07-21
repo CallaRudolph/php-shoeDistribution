@@ -48,5 +48,18 @@
 
             $this->assertEquals($price, $result);
         }
+
+        function testSetPrice()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $new_price = 1;
+
+            $test_shoe->setPrice($new_price);
+            $result = $test_shoe->getPrice();
+
+            $this->assertEquals($new_price, $result);
+        }
     }
 ?>
