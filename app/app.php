@@ -74,5 +74,19 @@
         return $app['twig']->render('shoes.html.twig', array('shoes' => Shoe::getAll()));
     });
 
+    $app->post("/shoes", function() use ($app) {
+        $brand = $_POST['brand'];
+        $price = $_POST['price'];
+        $shoe = new Shoe($brand, $price);
+        $shoe->save();
+        return $app['twig']->render('shoes.html.twig', array('shoes' => Shoe::getAll()));
+    });
+
+    $app->post("/delete_shoes", function() use ($app) {
+        Shoe::deleteAll();
+        return $app['twig']->render('index.html.twig');
+    });
+
+
     return $app;
 ?>
