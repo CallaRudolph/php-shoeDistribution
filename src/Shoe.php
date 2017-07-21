@@ -71,5 +71,22 @@ class Shoe
             return false;
         }
     }
+
+    static function find($search_id)
+    {
+        $found_shoe = null;
+        $returned_shoes = $GLOBALS['DB']->prepare("SELECT * FROM shoes WHERE id = :id");
+        $returned_shoes->bindParam(':id', $search_id, PDO::PARAM_STR);  
+        $returned_shoes->execute();
+        foreach($returned_shoes as $shoe) {
+            $brand = $shoe['brand'];
+            $price = $shoe['price'];
+            $id = $shoe['id'];
+            if ($id == $search_id) {
+                $found_shoe = new Shoe($brand, $price, $id);
+            }
+        }
+        return $found_shoe;
+    }
 }
 ?>

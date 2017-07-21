@@ -125,5 +125,22 @@
             $result = Shoe::getAll();
             $this->assertEquals([], $result);
         }
+
+        function testFind()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $brand2 = "Vans";
+            $price2 = 100;
+            $test_shoe2 = new Shoe($brand2, $price2);
+            $test_shoe2->save();
+
+            $result = Shoe::find($test_shoe->getId());
+
+            $this->assertEquals($test_shoe, $result);
+        }
     }
 ?>
