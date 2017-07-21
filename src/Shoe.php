@@ -128,5 +128,11 @@ class Shoe
         }
         return implode(" ", $output_titlecased);
     }
+
+    function makeCurrency($price)
+    {
+        $currency = money_format('$%.2n', $price);
+        return $currency;
+    }
 }
 ?>
