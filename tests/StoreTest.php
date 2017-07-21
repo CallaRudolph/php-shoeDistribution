@@ -178,6 +178,18 @@
 
            $this->assertEquals($test_store->getShoes(), [$test_shoe, $test_shoe2]);
        }
+
+       function testMakeTitleCase()
+       {
+           $name = "shoes galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $title_cased = "Shoes Galore";
+           $result = $test_store->makeTitleCase($name);
+
+           $this->assertEquals($title_cased, $result);
+       }
    }
 
  ?>

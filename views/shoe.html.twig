@@ -20,6 +20,8 @@
                         <li>{{ store.getName }}</li>
                     {% endfor %}
                 </ul>
+            {% else %}
+                <p>This shoe isn't sold in any of our stores yet.</p>
             {% endif %}
             <br>
             <h4>Add a store to sell {{ shoe.getBrand }} at:</h4>

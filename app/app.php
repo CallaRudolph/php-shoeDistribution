@@ -28,7 +28,8 @@
 
     $app->post("/stores", function() use ($app) {
         $name = $_POST['name'];
-        $store = new Store($name);
+        $uc_name = ucfirst($name);
+        $store = new Store($uc_name);
         $store->save();
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
@@ -50,8 +51,9 @@
 
     $app->patch("/store/{id}", function($id) use ($app) {
         $name = $_POST['name'];
+        $uc_name = ucfirst($name);
         $store = Store::find($id);
-        $store->update($name);
+        $store->update($uc_name);
         return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
     });
 

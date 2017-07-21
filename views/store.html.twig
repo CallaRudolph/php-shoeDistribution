@@ -18,6 +18,8 @@
                         <li>{{ shoe.getBrand }}, priced at ${{ shoe.getPrice }}</li>
                     {% endfor %}
                 </ul>
+            {% else %}
+                <p>This store doesn't sell any of our shoes yet.</p>
             {% endif %}
             <br>
             <h4>Add a shoe brand for {{ store.getName }} to sell:</h4>
