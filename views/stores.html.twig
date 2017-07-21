@@ -12,7 +12,7 @@
             </div>
 
             {% if stores is not empty %}
-                <h2>Here are all of the stores we distribute our quality products to:</h2>
+                <h4>Here are all of the stores we distribute our quality products to:</h4>
                 <ul>
                     {% for store in stores %}
                         <li> <a href="/store/{{ store.getId }}"> {{ store.getName }}</a> </li>
