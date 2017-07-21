@@ -16,5 +16,10 @@ class Shoe
     {
         return $this->brand;
     }
+
+    function setBrand($new_brand)
+    {
+        $this->brand = (string) $new_brand;
+    }
 }
 ?>

@@ -24,5 +24,18 @@
 
             $this->assertEquals($brand, $result);
         }
+
+        function testSetBrand()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $new_brand = "Vans";
+
+            $test_shoe->setBrand($new_brand);
+            $result = $test_shoe->getBrand();
+
+            $this->assertEquals($new_brand, $result);
+        }
     }
 ?>
