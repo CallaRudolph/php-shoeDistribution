@@ -28,8 +28,9 @@
 
     $app->post("/stores", function() use ($app) {
         $name = $_POST['name'];
-        $uc_name = ucfirst($name);
-        $store = new Store($uc_name);
+        $store = new Store($name);
+        $uc_store = $store->makeTitleCase($name);
+        $store->setName($uc_store);
         $store->save();
         return $app['twig']->render('stores.html.twig', array('stores' => Store::getAll()));
     });
@@ -51,8 +52,8 @@
 
     $app->patch("/store/{id}", function($id) use ($app) {
         $name = $_POST['name'];
-        $uc_name = ucfirst($name);
         $store = Store::find($id);
+        $uc_name = $store->makeTitleCase($name);
         $store->update($uc_name);
         return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
     });
