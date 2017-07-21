@@ -157,6 +157,20 @@
             $this->assertEquals("DSW", $test_shoe->getBrand());
         }
 
+        function testUpdatePrice()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $new_price = 100;
+
+            $test_shoe->updatePrice($new_price);
+
+            $this->assertEquals(100, $test_shoe->getPrice());
+        }
+
         function testDelete()
         {
             $name = "Shoes Galore";

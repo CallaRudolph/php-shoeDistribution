@@ -100,6 +100,17 @@ class Shoe
         }
     }
 
+    function updatePrice($new_price)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE shoes SET price = '{$new_price}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setPrice($new_price);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     function delete()
     {
         $executed = $GLOBALS['DB']->exec("DELETE FROM shoes WHERE id = {$this->getId()};");
