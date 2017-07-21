@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Shoe Info</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Shoe Depot Tracking -<h1>
+                <h6><em>"For the feet, by the people"</em></h6>
+                <h3><u>{{ shoe.getBrand }} Info Page</u></h3>
+            </div>
+
+            {% if stores is not empty %}
+                <p>Here are the stores where this shoe is sold:</p>
+                <ul>
+                    {% for store in stores %}
+                        <li>{{ store.getName }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <br>
+            <h4>Add a store to sell {{ shoe.getBrand }} at:</h4>
+
+            <form action="/add_stores" method="post">
+                <input id="shoe_id" name="shoe_id" type="hidden" value="{{ shoe.getId }}">
+                <label for="store_id">Select a store:</label>
+                <select id="store_id" name="store_id" type="text">
+                    {% for store in all_stores %}
+                        <option value="{{ store.getId }}"> {{ store.getName }} </option>
+                    {% endfor %}
+                </select>
+                <br>
+                <button type="submit" class="btn-info">Add store</button>
+            </form>
+            <br>
+
+            <p><a href="/">Return</a> to main page</p>
+        </div>
+    </body>
+</html>
