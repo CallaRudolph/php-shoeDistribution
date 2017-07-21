@@ -179,5 +179,18 @@
 
             $this->assertEquals($test_shoe->getStores(), [$test_store, $test_store2]);
         }
+
+        function testMakeTitleCase()
+        {
+            $brand = "vans and vans";
+            $price = 100;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $title_cased = "Vans and Vans";
+            $result = $test_shoe->makeTitleCase($brand);
+
+            $this->assertEquals($title_cased, $result);
+        }
     }
 ?>
