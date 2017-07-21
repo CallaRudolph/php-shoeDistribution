@@ -40,7 +40,7 @@
 
     $app->get("/store/{id}", function($id) use ($app) {
         $store = Store::find($id);
-        return $app['twig']->render('store.html.twig', array('store' => $store));
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
     });
 
     return $app;

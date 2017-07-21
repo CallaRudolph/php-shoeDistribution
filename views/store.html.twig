@@ -10,6 +10,33 @@
                 <h6><em>"For the feet, by the people"</em></h6>
                 <h3><u>{{ store.getName }} Info Page</u></h3>
             </div>
+
+            {% if shoes is not empty %}
+                <p>Here are the shoes that this store sells:</p>
+                <ul>
+                    {% for shoe in shoes %}
+                        <li>{{ shoe.getBrand }}, selling for ${{ shoe.getPrice }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <h4>Add a shoe brand for {{ store.getName }} to sell:</h4>
+
+            <form action="/add_shoes" method="post">
+                <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+                <label for="shoe_id">Select a shoe brand:</label>
+                <select id="shoe_id" name="shoe_id" type="text">
+                    {% for shoe in all_shoes %}
+                        <option value="{{ shoe.getId }}"> {{ shoe.getBrand }} </option>
+                    {% endfor %}
+                </select>
+                <br>
+                <button type="submit" class="btn-info">Add shoe</button>
+            </form>
+            <br>
+            <p><a href="/store/{{ store.getId }}/edit">Edit</a> {{ store.getName }}</p>
+
+            <p><a href="/">Return</a> to main page</p>
         </div>
     </body>
 </html>
