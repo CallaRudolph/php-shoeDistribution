@@ -5,7 +5,6 @@
    * @backupStaticAttributes disabled
    */
 
-   require_once "src/Shoe.php";
    require_once "src/Store.php";
 
    $server = 'mysql:host=localhost:8889;dbname=shoes_test';
@@ -15,6 +14,10 @@
 
    class StoreTest extends PHPUnit_Framework_TestCase
    {
+       protected function tearDown()
+       {
+           Store::deleteAll();
+       }
 
        function testGetName()
        {
@@ -58,6 +61,37 @@
            $executed = $test_store->save();
 
            $this->assertTrue($executed, "Store not successfully saved to database");
+       }
+
+       function testGetAll()
+       {
+           $name = "Shoes Galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $name2 = "Shoes Abode";
+           $test_store2 = new Store($name2);
+           $test_store2->save();
+
+           $result = Store::getAll();
+
+           $this->assertEquals([$test_store, $test_store2], $result);
+       }
+
+       function testDeleteAll()
+       {
+           $name = "Shoes Galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $name2 = "Shoes Abode";
+           $test_store2 = new Store($name2);
+           $test_store2->save();
+
+           Store::deleteAll();
+
+           $result = Store::getAll();
+           $this->assertEquals([], $result);
        }
    }
 

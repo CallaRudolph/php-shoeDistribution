@@ -7,7 +7,7 @@ class Store
     function __construct($name, $id = null)
     {
         $this->name = $name;
-        $this->id - $id;
+        $this->id = $id;
     }
 
     function getName()
@@ -27,9 +27,32 @@ class Store
 
     function save()
     {
-        $executed = $GLOBALS['DB']->exec("INSERT INTO stores (name) VALUES ('{$this->getName()}')");
+        $executed = $GLOBALS['DB']->exec("INSERT INTO stores (name) VALUES ('{$this->getName()}');");
         if ($executed) {
             $this->id = $GLOBALS['DB']->lastInsertId();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    static function getAll()
+    {
+        $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores;");
+        $stores = array();
+        foreach($returned_stores as $store) {
+            $name = $store['name'];
+            $id = $store['id'];
+            $new_store = new Store($name, $id);
+            array_push($stores, $new_store);
+        }
+        return $stores;
+    }
+
+    static function deleteAll()
+    {
+        $executed = $GLOBALS['DB']->exec("DELETE FROM stores;");
+        if ($executed) {
             return true;
         } else {
             return false;
