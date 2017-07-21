@@ -18,5 +18,9 @@
     use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
+    $app->get("/", function() use ($app) {
+        return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(), 'shoes' => Shoe::getAll()));
+    });
+
     return $app;
 ?>
