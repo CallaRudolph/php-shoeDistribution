@@ -93,6 +93,21 @@
            $result = Store::getAll();
            $this->assertEquals([], $result);
        }
+
+       function testFind()
+       {
+           $name = "Shoes Galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $name2 = "Shoes Abode";
+           $test_store2 = new Store($name2);
+           $test_store2->save();
+
+           $result = Store::find($test_store->getId());
+
+           $this->assertEquals($test_store, $result);
+       }
    }
 
  ?>

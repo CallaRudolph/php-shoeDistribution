@@ -58,5 +58,21 @@ class Store
             return false;
         }
     }
+
+    static function find($search_id)
+    {
+        $found_store = null;
+        $returned_stores = $GLOBALS['DB']->prepare("SELECT * FROM stores WHERE id = :id");
+        $returned_stores->bindParam(':id', $search_id, PDO::PARAM_STR);
+        $returned_stores->execute();
+        foreach($returned_stores as $store) {
+            $name = $store['name'];
+            $id = $store['id'];
+            if ($id == $search_id) {
+                $found_store = new Store($name, $id);
+            }
+        }
+        return $found_store;
+    }
 }
 ?>
