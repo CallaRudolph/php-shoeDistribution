@@ -6,6 +6,7 @@
     */
 
     require_once "src/Shoe.php";
+    require_once "src/Store.php";
 
     $server = 'mysql:host=localhost:8889;dbname=shoes_test';
     $username = 'root';
@@ -17,6 +18,7 @@
         protected function tearDown()
         {
             Shoe::deleteAll();
+            Store::deleteAll();
         }
 
         function testGetBrand()
@@ -32,7 +34,7 @@
 
         function testSetBrand()
         {
-            $brand = "Blowfish";
+            $brand = "Nike";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $new_brand = "Vans";
@@ -45,7 +47,7 @@
 
         function testGetPrice()
         {
-            $brand = "Blowfish";
+            $brand = "Celebs";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
 
@@ -56,7 +58,7 @@
 
         function testSetPrice()
         {
-            $brand = "Blowfish";
+            $brand = "Merrill";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $new_price = 1;
@@ -69,7 +71,7 @@
 
         function testGetId()
         {
-            $brand = "Blowfish";
+            $brand = "Saucony";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
@@ -81,7 +83,7 @@
 
         function testSave()
         {
-            $brand = "Blowfish";
+            $brand = "Adidas";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
@@ -93,12 +95,12 @@
 
         function testGetAll()
         {
-            $brand = "Blowfish";
+            $brand = "Coral";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
 
-            $brand2 = "Vans";
+            $brand2 = "Pumps";
             $price2 = 100;
             $test_shoe2 = new Shoe($brand2, $price2);
             $test_shoe2->save();
@@ -110,12 +112,12 @@
 
         function testDeleteAll()
         {
-            $brand = "Blowfish";
+            $brand = "Choooo";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
 
-            $brand2 = "Vans";
+            $brand2 = "Shoes";
             $price2 = 100;
             $test_shoe2 = new Shoe($brand2, $price2);
             $test_shoe2->save();
@@ -128,12 +130,12 @@
 
         function testFind()
         {
-            $brand = "Blowfish";
+            $brand = "New Balance";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
 
-            $brand2 = "Vans";
+            $brand2 = "Newest Balance";
             $price2 = 100;
             $test_shoe2 = new Shoe($brand2, $price2);
             $test_shoe2->save();
@@ -145,21 +147,21 @@
 
         function testUpdate()
         {
-            $brand = "Blowfish";
+            $brand = "Flats";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
 
-            $new_brand = "DSW";
+            $new_brand = "Sandals";
 
             $test_shoe->update($new_brand);
 
-            $this->assertEquals("DSW", $test_shoe->getBrand());
+            $this->assertEquals("Sandals", $test_shoe->getBrand());
         }
 
         function testUpdatePrice()
         {
-            $brand = "Blowfish";
+            $brand = "High Heels";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
@@ -173,11 +175,11 @@
 
         function testDelete()
         {
-            $name = "Shoes Galore";
+            $name = "Shoe Crew";
             $test_store = new Store($name);
             $test_store->save();
 
-            $brand = "Blowfish";
+            $brand = "Swoosh";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
@@ -190,11 +192,11 @@
 
         function testAddStore()
         {
-            $name = "Shoes Galore";
+            $name = "Shoes Crews";
             $test_store = new Store($name);
             $test_store->save();
 
-            $brand = "Blowfish";
+            $brand = "Swooshes";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();
@@ -206,15 +208,15 @@
 
         function testGetStores()
         {
-            $name = "Shoes Galore";
+            $name = "Shoez Crewz";
             $test_store = new Store($name);
             $test_store->save();
 
-            $name2 = "Shoes Abode";
+            $name2 = "Shuz Cruz";
             $test_store2 = new Store($name2);
             $test_store2->save();
 
-            $brand = "Blowfish";
+            $brand = "Jellies";
             $price = 50;
             $test_shoe = new Shoe($brand, $price);
             $test_shoe->save();

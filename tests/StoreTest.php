@@ -18,11 +18,12 @@
        protected function tearDown()
        {
            Store::deleteAll();
+           Shoe::deleteAll();
        }
 
        function testGetName()
        {
-           $name = "Shoes Galore";
+           $name = "Shooooes";
            $test_store = new Store($name);
 
            $result = $test_store->getName();
@@ -32,9 +33,9 @@
 
        function testSetName()
        {
-           $name = "Shoes Galore";
+           $name = "Shoess";
            $test_store = new Store($name);
-           $new_name = "Shoes Abode";
+           $new_name = "Shoes Chews";
 
            $test_store->setName($new_name);
            $result = $test_store->getName();
@@ -44,7 +45,7 @@
 
        function testGetId()
        {
-           $name = "Shoes Galore";
+           $name = "Blues Shoes";
            $test_store = new Store($name);
            $test_store->save();
 
@@ -55,7 +56,7 @@
 
        function testSave()
        {
-           $name = "Shoes Galore";
+           $name = "Zoos Shoes";
            $test_store = new Store($name);
            $test_store->save();
 
@@ -66,11 +67,11 @@
 
        function testGetAll()
        {
-           $name = "Shoes Galore";
+           $name = "Her Shoes";
            $test_store = new Store($name);
            $test_store->save();
 
-           $name2 = "Shoes Abode";
+           $name2 = "His Shoes";
            $test_store2 = new Store($name2);
            $test_store2->save();
 
@@ -81,11 +82,11 @@
 
        function testDeleteAll()
        {
-           $name = "Shoes Galore";
+           $name = "There Shoes";
            $test_store = new Store($name);
            $test_store->save();
 
-           $name2 = "Shoes Abode";
+           $name2 = "My Shoes";
            $test_store2 = new Store($name2);
            $test_store2->save();
 
@@ -97,11 +98,11 @@
 
        function testFind()
        {
-           $name = "Shoes Galore";
+           $name = "Shoes Used";
            $test_store = new Store($name);
            $test_store->save();
 
-           $name2 = "Shoes Abode";
+           $name2 = "Shoes New";
            $test_store2 = new Store($name2);
            $test_store2->save();
 
@@ -112,25 +113,25 @@
 
        function testUpdate()
        {
-           $name = "Shoes Galore";
+           $name = "Shoes Old";
            $test_store = new Store($name);
            $test_store->save();
 
-           $new_name = "Shoes Abode";
+           $new_name = "Shoes Fresh";
 
            $test_store->update($new_name);
 
-           $this->assertEquals("Shoes Abode", $test_store->getName());
+           $this->assertEquals("Shoes Fresh", $test_store->getName());
        }
 
        function testDelete()
        {
-           $brand = "Blowfish";
+           $brand = "Fish shoes";
            $price = 50;
            $test_shoe = new Shoe($brand, $price);
            $test_shoe->save();
 
-           $name = "Shoes Galore";
+           $name = "Shoes Now";
            $test_store = new Store($name);
            $test_store->save();
 
@@ -143,12 +144,12 @@
        function testAddShoe()
        {
 
-           $brand = "Blowfish";
+           $brand = "Shoe Fish";
            $price = 50;
            $test_shoe = new Shoe($brand, $price);
            $test_shoe->save();
 
-           $name = "Shoes Galore";
+           $name = "Shoes Then";
            $test_store = new Store($name);
            $test_store->save();
 
@@ -159,17 +160,17 @@
 
        function testGetShoes()
        {
-           $brand = "Blowfish";
+           $brand = "Whatever Shoes";
            $price = 50;
            $test_shoe = new Shoe($brand, $price);
            $test_shoe->save();
 
-           $brand2 = "Vans";
+           $brand2 = "Store";
            $price2 = 100;
            $test_shoe2 = new Shoe($brand2, $price2);
            $test_shoe2->save();
 
-           $name = "Shoes Galore";
+           $name = "Mall";
            $test_store = new Store($name);
            $test_store->save();
 
