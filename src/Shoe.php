@@ -76,7 +76,7 @@ class Shoe
     {
         $found_shoe = null;
         $returned_shoes = $GLOBALS['DB']->prepare("SELECT * FROM shoes WHERE id = :id");
-        $returned_shoes->bindParam(':id', $search_id, PDO::PARAM_STR);  
+        $returned_shoes->bindParam(':id', $search_id, PDO::PARAM_STR);
         $returned_shoes->execute();
         foreach($returned_shoes as $shoe) {
             $brand = $shoe['brand'];
@@ -87,6 +87,29 @@ class Shoe
             }
         }
         return $found_shoe;
+    }
+
+    function addStore($store)
+    {
+        $executed = $GLOBALS['DB']->exec("INSERT INTO shoes_stores (shoe_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
+        if ($executed) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function getStores()
+    {
+        $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM shoes JOIN shoes_stores ON (shoes_stores.shoe_id = shoes.id) JOIN stores ON (stores.id = shoes_stores.store_id) WHERE shoes.id = {$this->getId()};");
+        $stores = array();
+        foreach($returned_stores as $store) {
+            $name = $store['name'];
+            $id = $store['id'];
+            $new_store = new Store($name, $id);
+            array_push($stores, $new_store);
+        }
+        return $stores;
     }
 }
 ?>

@@ -142,5 +142,42 @@
 
             $this->assertEquals($test_shoe, $result);
         }
+
+        function testAddStore()
+        {
+            $name = "Shoes Galore";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $test_shoe->addStore($test_store);
+
+            $this->assertEquals($test_shoe->getStores(), [$test_store]);
+        }
+
+        function testGetStores()
+        {
+            $name = "Shoes Galore";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $name2 = "Shoes Abode";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $test_shoe->addStore($test_store);
+            $test_shoe->addStore($test_store2);
+
+            $this->assertEquals($test_shoe->getStores(), [$test_store, $test_store2]);
+        }
     }
 ?>
