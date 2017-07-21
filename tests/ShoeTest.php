@@ -250,7 +250,7 @@
             $new_brand = "shoesy";
             $result = $test_shoe->checkDuplicate($new_brand);
 
-            $this->assertEquals("duplicates", $result);
+            $this->assertEquals("duplicate found", $result);
         }
     }
 ?>

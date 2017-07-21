@@ -140,5 +140,17 @@ class Store
         }
         return implode(" ", $output_titlecased);
     }
+
+    function checkDuplicate($new_name)
+    {
+        $stores = $GLOBALS['DB']->query("SELECT name FROM stores;");
+        foreach($stores as $store) {
+            $store_name = $store['name'];
+            if ($store_name == $new_name) {
+                $message = "duplicate found";
+            }
+        }
+        return $message;
+    }
 }
 ?>

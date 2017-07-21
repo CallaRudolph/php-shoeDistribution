@@ -191,6 +191,18 @@
 
            $this->assertEquals($title_cased, $result);
        }
+
+       function testCheckDuplicate()
+       {
+           $name = "shoes galore";
+           $test_store = new Store($name);
+           $test_store->save();
+
+           $new_name = "shoes galore";
+           $result = $test_store->checkDuplicate($new_name);
+
+           $this->assertEquals("duplicate found", $result);
+       }
    }
 
  ?>
