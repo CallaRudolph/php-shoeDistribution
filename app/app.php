@@ -43,5 +43,10 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
     });
 
+    $app->get("store/{id}/edit", function($id) use ($app) {
+        $store = Store::find($id);
+        return $app['twig']->render('store_edit.html.twig', array('store' => $store));
+    });
+
     return $app;
 ?>
