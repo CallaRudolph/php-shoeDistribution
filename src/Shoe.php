@@ -21,5 +21,10 @@ class Shoe
     {
         $this->brand = (string) $new_brand;
     }
+
+    function getPrice()
+    {
+        return $this->price;
+    }
 }
 ?>
