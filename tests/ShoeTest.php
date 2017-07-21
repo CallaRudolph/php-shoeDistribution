@@ -143,6 +143,37 @@
             $this->assertEquals($test_shoe, $result);
         }
 
+        function testUpdate()
+        {
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $new_brand = "DSW";
+
+            $test_shoe->update($new_brand);
+
+            $this->assertEquals("DSW", $test_shoe->getBrand());
+        }
+
+        function testDelete()
+        {
+            $name = "Shoes Galore";
+            $test_store = new Store($name);
+            $test_store->save();
+
+            $brand = "Blowfish";
+            $price = 50;
+            $test_shoe = new Shoe($brand, $price);
+            $test_shoe->save();
+
+            $test_shoe->addStore($test_store);
+            $test_shoe->delete();
+
+            $this->assertEquals([], $test_shoe->getStores());
+        }
+
         function testAddStore()
         {
             $name = "Shoes Galore";

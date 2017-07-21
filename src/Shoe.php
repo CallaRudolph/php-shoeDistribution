@@ -89,6 +89,31 @@ class Shoe
         return $found_shoe;
     }
 
+    function update($new_brand)
+    {
+        $executed = $GLOBALS['DB']->exec("UPDATE shoes SET brand = '{$new_brand}' WHERE id = {$this->getId()};");
+        if ($executed) {
+            $this->setBrand($new_brand);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function delete()
+    {
+        $executed = $GLOBALS['DB']->exec("DELETE FROM shoes WHERE id = {$this->getId()};");
+        if (!$executed) {
+            return false;
+        }
+        $GLOBALS['DB']->exec("DELETE FROM shoes_stores WHERE store_id = {$this->getId()};");
+        if (!$executed) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     function addStore($store)
     {
         $executed = $GLOBALS['DB']->exec("INSERT INTO shoes_stores (shoe_id, store_id) VALUES ({$this->getId()}, {$store->getId()});");
