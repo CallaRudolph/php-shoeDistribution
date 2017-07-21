@@ -15,7 +15,7 @@
                 <p>Here are the shoes that this store sells:</p>
                 <ul>
                     {% for shoe in shoes %}
-                        <li>{{ shoe.getBrand }}, selling for ${{ shoe.getPrice }}</li>
+                        <li>{{ shoe.getBrand }}, priced at ${{ shoe.getPrice }}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
