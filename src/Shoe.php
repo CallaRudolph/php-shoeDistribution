@@ -164,5 +164,18 @@ class Shoe
         }
         return implode(" ", $output_titlecased);
     }
+
+    function checkDuplicate($new_brand)
+    {
+        $brands = $GLOBALS['DB']->query("SELECT brand FROM shoes;");
+        foreach($brands as $brand) {
+            $brand_name = $brand['brand'];
+            if ($brand_name == $new_brand) {
+                $GLOBALS['DB']->exec("DELETE FROM shoes WHERE name = {$new_brand};");
+                $message = "duplicates";
+            }
+        }
+        return $message;
+    }
 }
 ?>

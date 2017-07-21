@@ -46,16 +46,18 @@ _The following user stories are available in this project:_
     * Example input: '50'
     * Example output: '$50.00'
 * The user is unable to save a blank entry for store name or shoe brand.
-* The user cannot save a duplicate store name or duplicate shoe brand.
 * A store name and shoe brand are saved with a maximum of thirty characters.
+
+_wish list:_
+* The user cannot save a duplicate store name or duplicate shoe brand.
 
 ## MySQL Commands
 The following MySQL commands were entered when creating the database and during testing:
 
 * CREATE DATABASE shoes;
 * USE shoes;
-* CREATE TABLE stores (id serial PRIMARY KEY, name VARCHAR (30), UNIQUE (name));
-* CREATE TABLE shoes (id serial PRIMARY KEY, brand VARCHAR (30), price DECIMAL (5, 2), UNIQUE (brand));
+* CREATE TABLE stores (id serial PRIMARY KEY, name VARCHAR (30));
+* CREATE TABLE shoes (id serial PRIMARY KEY, brand VARCHAR (30), price DECIMAL (5, 2));
 * CREATE TABLE shoes_stores (id serial primary key, shoe_id INT, store_id INT);
 * copy shoes to shoes_test in phpMyAdmin
 
