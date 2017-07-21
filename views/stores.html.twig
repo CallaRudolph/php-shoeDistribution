@@ -7,9 +7,10 @@
         <div class="container">
             <div class="jumbotron">
                 <h1>Shoe Depot Tracking -<h1>
-                <h6><em>For the feet, by the people</em></h6>
-                <h3>List of Stores</h3>
+                <h6><em>"For the feet, by the people"</em></h6>
+                <h3><u>List of Stores</u></h3>
             </div>
+
             {% if stores is not empty %}
                 <h2>Here are all of the stores we distribute our quality products to:</h2>
                 <ul>
@@ -20,6 +21,15 @@
             {% else %}
                 <p>There are no stores yet, we've got some work to do!</p>
             {% endif %}
+            <br>
+            <h4>Add a new store:</h4>
+            <form action='/stores' method="post">
+                <input placeholder="Store Name" type="text" name='name' id='name' require>
+                <br><br>
+                <button type="submit" class="btn btn-success">Cha ching!</button>
+            </form>
+            <br>
+            <h4><a href="/">Return</a> to main page</h4>
         </div>
     </body>
 </html>
