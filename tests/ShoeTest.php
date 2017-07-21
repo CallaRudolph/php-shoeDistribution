@@ -192,18 +192,5 @@
 
             $this->assertEquals($title_cased, $result);
         }
-
-        function testCurrency()
-        {
-            $brand = "vans and vans";
-            $price = 100;
-            $test_shoe = new Shoe($brand, $price);
-            $test_shoe->save();
-
-            $currency = "$100.00";
-            $result = $test_shoe->makeCurrency($price);
-
-            $this->assertEquals($currency, $result);
-        }
     }
 ?>

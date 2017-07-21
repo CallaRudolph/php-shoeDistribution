@@ -29,7 +29,7 @@ class Shoe
 
     function setPrice($new_price)
     {
-        $this->price = intval($new_price);
+        $this->price = money_format('%.2n', $new_price);
     }
 
     function getId()
@@ -127,12 +127,6 @@ class Shoe
             array_push($output_titlecased, ucfirst($word));
         }
         return implode(" ", $output_titlecased);
-    }
-
-    function makeCurrency($price)
-    {
-        $currency = money_format('$%.2n', $price);
-        return $currency;
     }
 }
 ?>
