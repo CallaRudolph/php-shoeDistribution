@@ -121,6 +121,11 @@
 
            $this->assertEquals("Shoes Abode", $test_store->getName());
        }
+
+    //    function testDelete()
+    //    {
+    //
+    //    }
    }
 
  ?>

@@ -85,5 +85,10 @@ class Store
             return false;
         }
     }
+    // 
+    // function delete()
+    // {
+    //
+    // }
 }
 ?>
