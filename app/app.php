@@ -119,8 +119,14 @@
         $price = $_POST['price'];
         $shoe = Shoe::find($id);
         $uc_shoe = $shoe->makeTitleCase($brand);
-        $shoe->update($uc_shoe);
-        $shoe->updatePrice($price);
+
+        if ($shoe->checkDuplicate($uc_shoe) == "duplicate found") {
+            echo "that shoe brand already exists!";
+        } else {
+            $shoe->update($uc_shoe);
+            $shoe->updatePrice($price);
+        }
+
         return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
     });
 
