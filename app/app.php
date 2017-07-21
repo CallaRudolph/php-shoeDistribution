@@ -97,13 +97,6 @@
         return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
     });
 
-    $app->post("/add_stores", function() use ($app) {
-        $shoe = Shoe::find($_POST['shoe_id']);
-        $store = Store::find($_POST['store_id']);
-        $shoe->addStore($store);
-        return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'shoes' => Shoe::getAll(), 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
-    });
-
     $app->get("shoe/{id}/edit", function($id) use ($app) {
         $shoe = Shoe::find($id);
         return $app['twig']->render('shoe_edit.html.twig', array('shoe' => $shoe));
@@ -117,6 +110,19 @@
         $shoe->update($uc_shoe);
         $shoe->updatePrice($price);
         return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
+    });
+
+    $app->delete("/shoe/{id}", function($id) use ($app) {
+        $shoe = Shoe::find($id);
+        $shoe->delete();
+        return $app['twig']->render('index.html.twig', array('shoes' => Shoe::getAll()));
+    });
+
+    $app->post("/add_stores", function() use ($app) {
+        $shoe = Shoe::find($_POST['shoe_id']);
+        $store = Store::find($_POST['store_id']);
+        $shoe->addStore($store);
+        return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'shoes' => Shoe::getAll(), 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
     });
 
     return $app;
