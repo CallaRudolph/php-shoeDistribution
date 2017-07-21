@@ -104,5 +104,10 @@
         return $app['twig']->render('shoe.html.twig', array('shoe' => $shoe, 'shoes' => Shoe::getAll(), 'stores' => $shoe->getStores(), 'all_stores' => Store::getAll()));
     });
 
+    $app->get("shoe/{id}/edit", function($id) use ($app) {
+        $shoe = Shoe::find($id);
+        return $app['twig']->render('shoe_edit.html.twig', array('shoe' => $shoe));
+    });
+
     return $app;
 ?>

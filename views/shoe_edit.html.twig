@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <title>Shoe Edit</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Shoe Depot Tracking -<h1>
+                <h6><em>"For the feet, by the people"</em></h6>
+                <h3><u>{{ store.getName }} Edit Page</u></h3>
+            </div>
+
+            <form action="/shoe/{{ shoe.getId }}" method="post">
+                <input type="hidden" name="_method" value="patch">
+
+                <label for="brand">Rename {{ shoe.getBrand }} brand:</label>
+                <br>
+                <input type="brand" name="brand" id="brand" required>
+                <br><br>
+                <label for="price">Change price from ${{ shoe.getPrice }}:</label>
+                <br>
+                <input type="price" name="price" id="price" required>
+                <br><br>
+                <button type="submit" class="btn-warning">Update</button>
+            </form>
+            <br>
+            <form action="/shoe/{{ shoe.getId }}" method="post">
+                <input type="hidden" name="_method" value="delete">
+
+                <button type="submit" class="btn-danger">Remove {{ shoe.getBrand }} from distribution</button>
+            </form>
+            <br>
+            <h4><a href="/">Nevermind!</a></h4>
+        </div>
+    </body>
+</html>
