@@ -48,5 +48,18 @@
         return $app['twig']->render('store_edit.html.twig', array('store' => $store));
     });
 
+    $app->patch("/store/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $store = Store::find($id);
+        $store->update($name);
+        return $app['twig']->render('store.html.twig', array('store' => $store, 'shoes' => $store->getShoes(), 'all_shoes' => Shoe::getAll()));
+    });
+
+    $app->delete("/store/{id}", function($id) use ($app) {
+        $store = Store::find($id);
+        $store->delete();
+        return $app['twig']->render('index.html.twig', array('stores' => Store::getAll()));
+    });
+
     return $app;
 ?>
