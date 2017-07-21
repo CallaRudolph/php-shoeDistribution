@@ -192,18 +192,5 @@
 
             $this->assertEquals($title_cased, $result);
         }
-
-        function testCheckDuplicate()
-        {
-            $brand = "Vans";
-            $price = 100;
-            $test_shoe = new Shoe($brand, $price);
-            $test_shoe->save();
-
-            $new_brand = "Vans";
-            $result = $test_shoe->checkDuplicate($new_brand);
-
-            $this->assertEquals("ERROR", $result);
-        }
     }
 ?>
